@@ -19,6 +19,16 @@ match($0, /\/\/! version = ([0-9]+)/, xs) {
     }
 }
 
+/\/\/! else/ {
+    skip_line = 1;
+
+    if (dont_print == 0) {
+        dont_print++;
+    } else if (dont_print == 1) {
+        dont_print--;
+    }
+}
+
 /\/\/! end/ {
     skip_line = 1;
     if (dont_print > 0) {
