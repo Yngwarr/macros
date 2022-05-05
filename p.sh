@@ -4,6 +4,9 @@ SRC="$1"
 DST="$2"
 VER="$3"
 CONF="versions.conf"
+FLAGS="$(sed -n "${VER}p" "$SRC/$CONF")"
+
+echo "Version flags: $FLAGS" ; echo
 
 for f in $(pushd "$SRC" > /dev/null ; find * ; popd > /dev/null) ; do
     if [[ -d "$SRC/$f" ]] ; then
@@ -14,8 +17,8 @@ for f in $(pushd "$SRC" > /dev/null ; find * ; popd > /dev/null) ; do
     if [[ "$f" == "$CONF" ]] ; then continue ; fi
 
     if [[ -f "$SRC/$f" ]] ; then
-        gawk -f ~/opt/cut.awk -v version="$VER" $(sed -n "${VER}p" "$SRC/$CONF") "$SRC/$f" > "$DST/$f"
+        gawk -f ~/opt/cut.awk -v version="$VER" $FLAGS "$SRC/$f" > "$DST/$f"
     fi
 
-    echo "$f"
+    echo "Processed $f"
 done

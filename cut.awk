@@ -11,7 +11,7 @@ match($0, /\/\/! version = ([0-9]+)/, xs) {
     }
 }
 
-match($0, /\/\/! feature ([0-9A-Za-z_]+)/, xs) {
+match($0, /\/\/! if ([0-9A-Za-z_]+)/, xs) {
     skip_line = 1;
 
     feature = SYMTAB[xs[1]];

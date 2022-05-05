@@ -1,5 +1,5 @@
 "above"
-//! feature small
+//! if small
 "small"
 //! else
 "not small"
