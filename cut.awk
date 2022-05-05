@@ -20,6 +20,15 @@ match($0, /\/\/! feature ([0-9A-Za-z_]+)/, xs) {
     }
 }
 
+match($0, /\/\/! not ([0-9A-Za-z_]+)/, xs) {
+    skip_line = 1;
+
+    feature = SYMTAB[xs[1]];
+    if (feature == 1 || dont_print > 0) {
+        dont_print++;
+    }
+}
+
 /\/\/! else/ {
     skip_line = 1;
 
