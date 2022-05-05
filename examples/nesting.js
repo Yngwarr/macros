@@ -1,7 +1,7 @@
 "above"
 //! version = 1
 "version 1"
-//! 2mb
+//! feature small
 "2mb"
 //! end
 "version 1"

@@ -2,6 +2,6 @@
 
 FILE="$1"
 VER="$2"
-SIZE="$3"
+SMALL="$3"
 
-gawk -f cut.awk -v version="$VER" -v size="$SIZE" "$FILE"
+gawk -f cut.awk -v version="$VER" -v small="$SMALL" "$FILE"

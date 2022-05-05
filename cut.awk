@@ -11,10 +11,11 @@ match($0, /\/\/! version = ([0-9]+)/, xs) {
     }
 }
 
-/\/\/! 2mb/ {
+match($0, /\/\/! feature ([0-9A-Za-z_]+)/, xs) {
     skip_line = 1;
 
-    if (size != 2 || dont_print > 0) {
+    feature = SYMTAB[xs[1]];
+    if (feature == 0 || dont_print > 0) {
         dont_print++;
     }
 }

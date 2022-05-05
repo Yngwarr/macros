@@ -2,7 +2,7 @@
 //! version = 1
 "version 1"
 //! else
-//! 2mb
+//! feature small
 "version 2 && 2mb"
 //! else
 "version 2 && 5mb"
