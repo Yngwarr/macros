@@ -29,21 +29,34 @@ function extractTags(fname) {
     return { name: `${name}${ext}`, tags };
 }
 
+function hasAll(a, b) {
+    for (const x of a) {
+        if (!b.includes(x)) return false;
+    }
+    return true;
+}
+
 function main() {
     if (scriptArgs.length < 2) {
-        console.log('Usage: strip-tags.js path');
+        console.log('Usage: test-tags.js path ...tags');
         return -1;
     }
-    
-    const path = scriptArgs[1];
+
+    const argv = scriptArgs;
+    argv.shift();
+
+    const path = argv[0];
     let meta = path.split(PATH_SEP).map(extractTags);
     const name = meta.map(x => x.name).join(PATH_SEP);
     const tags = Array.from(meta.reduce((a, b) => {
-        b.tags.forEach(x => a.add(x));
+        b.tags.forEach(x => a.push(x));
         return a;
-    }, new Set()));
+    }, []));
 
-    console.log(`${name} ${tags.join(' ')}`)
+    const features = argv;
+    features.shift();
+
+    console.log(hasAll(tags, features) ? name : '');
 }
 
 main();
