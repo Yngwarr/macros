@@ -59,9 +59,9 @@ function main() {
     const features = argv;
     features.shift();
 
-    console.log(`tags: ${tags.join(' ')}`);
-    console.log(`features: ${features.join(' ')}`);
-    log(testTags(tags, features));
+    //console.log(`tags: ${tags.join(' ')}`);
+    //console.log(`features: ${features.join(' ')}`);
+    //log(testTags(tags, features));
 
     console.log(testTags(tags, features) ? name : '');
 }
