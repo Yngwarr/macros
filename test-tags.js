@@ -29,9 +29,12 @@ function extractTags(fname) {
     return { name: `${name}${ext}`, tags };
 }
 
-function hasAll(a, b) {
-    for (const x of a) {
-        if (!b.includes(x)) return false;
+function testTags(tags, features) {
+    for (const tag of tags) {
+        const fits = tag[0] === '-'
+            ? !features.includes(tag.slice(1))
+            : features.includes(tag);
+        if (!fits) return false;
     }
     return true;
 }
@@ -56,7 +59,11 @@ function main() {
     const features = argv;
     features.shift();
 
-    console.log(hasAll(tags, features) ? name : '');
+    console.log(`tags: ${tags.join(' ')}`);
+    console.log(`features: ${features.join(' ')}`);
+    log(testTags(tags, features));
+
+    console.log(testTags(tags, features) ? name : '');
 }
 
 main();
